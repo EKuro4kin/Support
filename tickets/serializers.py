@@ -9,11 +9,20 @@ class TicketCreateSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class TicketCommentSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(read_only=True, source="user.username")
+
+    class Meta:
+        model = TicketComment
+        fields = "__all__"
+
+
 class TicketSerializer(serializers.ModelSerializer):
+    message = TicketCommentSerializer(many=True)
+
     class Meta:
         model = Ticket
-        fields = "__all__"
-        # read_only_fields = ("id", "question_name")
+        fields = ["id", "question_name", "description", "answer", "status", "message"]
 
 
 class TicketListSerializer(serializers.ModelSerializer):
@@ -23,12 +32,6 @@ class TicketListSerializer(serializers.ModelSerializer):
 
 
 class TicketCommentCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TicketComment
-        fields = "__all__"
-
-
-class TicketCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TicketComment
         fields = "__all__"

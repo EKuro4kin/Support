@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis
+    restart: always
+
+  api:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      pg:
+        condition: service_healthy
+#      migrations:
+#        condition: service_completed_successfully
+
+  pg:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    restart: always
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  migrations:
+    build:
+      context: .
+    depends_on:
+      pg:
+        condition: service_healthy
+    command: python manage.py migrate
