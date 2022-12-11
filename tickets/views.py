@@ -12,30 +12,33 @@ from tickets.serializers import TicketListSerializer, TicketCreateSerializer, Ti
 
 class TicketCreateView(CreateAPIView):
     model = Ticket
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = TicketCreateSerializer
 
 
 class TicketDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Ticket.objects.all()
     model = Ticket
     serializer_class = TicketSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 class TicketListView(ListAPIView):
+    queryset = Ticket.objects.all()
     model = Ticket
     serializer_class = TicketListSerializer
 
 
 class TicketCommentCreateView(CreateAPIView):
     model = TicketComment
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = TicketCommentCreateSerializer
 
 
 class TicketCommentListView(generics.ListAPIView):
+    queryset = TicketComment.objects.all()
     model = TicketComment
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = TicketCommentSerializer
 
     filter_backends = [
@@ -46,10 +49,11 @@ class TicketCommentListView(generics.ListAPIView):
 
 
 class TicketCommentView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = TicketComment.objects.all()
     model = TicketComment
     serializer_class = TicketCommentSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        return TicketComment.objects.filter(user=self.request.user)
+    # def get_queryset(self):
+    #     return TicketComment.objects.filter(user=self.request.user)
 

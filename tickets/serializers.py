@@ -13,7 +13,7 @@ class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = "__all__"
-        read_only_fields = ("id", "question_name")
+        # read_only_fields = ("id", "question_name")
 
 
 class TicketListSerializer(serializers.ModelSerializer):
@@ -26,7 +26,6 @@ class TicketCommentCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = TicketComment
         fields = "__all__"
-        read_only_fields = ("id", "user")
 
 
 class TicketCommentSerializer(serializers.ModelSerializer):
