@@ -20,6 +20,7 @@ class Ticket(models.Model):
     status = models.PositiveSmallIntegerField(
         verbose_name="Статус", choices=Status.choices, default=Status.to_do
     )
+    # message_to_ticket = models.TextField(TicketComment, verbose_name="Сообщение к тикету", null=True)
 
 
 class TicketComment(models.Model):
@@ -28,5 +29,5 @@ class TicketComment(models.Model):
         verbose_name_plural = "Сообщения к тикету"
 
     text = models.TextField(verbose_name="Текс сообщения")
-    ticket = models.ForeignKey(Ticket, verbose_name="Тикет", on_delete=models.CASCADE, related_name="comments")
-    user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE, related_name="comments")
+    ticket = models.ForeignKey(Ticket, verbose_name="Тикет", on_delete=models.CASCADE, related_name="message")
+    user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE, related_name="message")

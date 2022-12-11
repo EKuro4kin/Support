@@ -11,6 +11,6 @@ urlpatterns = [
     # path('profile', views.ProfileView.as_view(), name='profile'),
 
     # Урлы аутентификации
-    path('token/', TokenObtainPairView.as_view()),
-    path('token/refresh/', TokenRefreshView.as_view()),
+    path('token', TokenObtainPairView.as_view()),
+    path('token/refresh', TokenRefreshView.as_view()),
 ]
