@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # user-defined apps
     'tickets',
     'users',
-
     # third-party apps
     'rest_framework',
     'django_filters',
