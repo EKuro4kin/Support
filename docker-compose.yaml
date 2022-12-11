@@ -14,8 +14,8 @@ services:
     depends_on:
       pg:
         condition: service_healthy
-#      migrations:
-#        condition: service_completed_successfully
+      migrations:
+        condition: service_completed_successfully
 
   pg:
     image: postgres:latest

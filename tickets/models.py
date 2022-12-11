@@ -20,7 +20,7 @@ class Ticket(models.Model):
     status = models.PositiveSmallIntegerField(
         verbose_name="Статус", choices=Status.choices, default=Status.to_do
     )
-    # message_to_ticket = models.TextField(TicketComment, verbose_name="Сообщение к тикету", null=True)
+
 
 
 class TicketComment(models.Model):

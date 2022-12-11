@@ -8,7 +8,6 @@ urlpatterns = [
     path('create', views.UserCreateView.as_view(), name='create'),
     path('<int:pk>', UserDetailView.as_view(), name='detail'),
     path('all_users', views.UserListView.as_view(), name='all_users'),
-    # path('profile', views.ProfileView.as_view(), name='profile'),
 
     # Урлы аутентификации
     path('token', TokenObtainPairView.as_view()),

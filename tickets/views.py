@@ -55,6 +55,3 @@ class TicketCommentView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TicketCommentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    # def get_queryset(self):
-    #     return TicketComment.objects.filter(user=self.request.user)
-
